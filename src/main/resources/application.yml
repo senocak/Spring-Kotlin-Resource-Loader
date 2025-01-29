@@ -1,0 +1,22 @@
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  application:
+    name: Spring-Kotlin-Resource-Loader
+  datasource:
+    url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/${POSTGRESQL_DB:rl}?currentSchema=public
+    username: ${POSTGRESQL_USER:postgres}
+    password: ${POSTGRESQL_PASSWORD:senocak}
+
+logging:
+  level:
+    org:
+      springframework:
+        core:
+          io: DEBUG
+
+# Load properties from the spring_property database table every 1000ms
+databaseResource:
+  table: spring_resource
+  blobColumn: file_data
+  fileNameColumn: file_name
